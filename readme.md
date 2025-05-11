@@ -67,7 +67,7 @@ LMS-Project/
 
 ## Demo Video
 
-[![Watch Demo Video](https://res.cloudinary.com/dhwbyshmo/image/upload/v1697537153/project%20images/lms-admin-dashboard.png)](https://www.linkedin.com/feed/update/urn:li:activity:7119641188646727681)
+[![Watch Demo Video](https://res.cloudinary.com/dhwbyshmo/image/upload/v1697537153/project%20images/lms-admin-dashboard.png)]()
 
 Click the image above to watch the demo video.
 
@@ -155,7 +155,7 @@ Follow these steps to set up the project on your local machine:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/gulshan07dev/lms-mern-project.git
+   git clone https://github.com/KaranChavda511/LMS-WEBSITE.git
    cd LMS
    ```
 
