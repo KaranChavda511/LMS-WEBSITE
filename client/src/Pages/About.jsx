@@ -39,7 +39,7 @@ function AboutUs() {
           <div className="md:w-1/2 w-1/7 flex items-center justify-center">
             <img
               style={{
-                filter: "drop-shadow(0px 15px 10px rgb(0,0,0));",
+                filter: "drop-shadow(0px 15px 10px rgb(0,0,0))",
               }}
               alt="about main image"
               className="drop-shadow-2xl"
