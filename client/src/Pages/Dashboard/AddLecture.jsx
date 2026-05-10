@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addCourseLecture } from "../../Redux/Slices/LectureSlice";
 import { useLocation, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { notify } from "../../Helpers/notify";
 import InputBox from "../../Components/InputBox/InputBox";
 import TextArea from "../../Components/InputBox/TextArea";
 import Layout from "../../Layout/Layout";
@@ -45,7 +45,7 @@ export default function AddLecture() {
   async function onFormSubmit(e) {
     e.preventDefault();
     if (!userInput.lecture || !userInput.title || !userInput.description) {
-      toast.error("All fields are mandatory");
+      notify.error("All fields are mandatory");
       return;
     }
 

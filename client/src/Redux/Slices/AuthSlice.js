@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import toast from "react-hot-toast";
+import { notify } from "../../Helpers/notify";
 import { axiosInstance } from '../../Helpers/axiosInstance';
 
 const initialState = {
@@ -10,65 +10,63 @@ const initialState = {
 
 // .....signup.........
 export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
-    const loadingMessage = toast.loading("Please wait! creating your account...");
+    const loadingMessage = notify.loading("Please wait! creating your account...");
     try {
         const res = await axiosInstance.post("/user/register", data);
-        toast.success(res?.data?.message, { id: loadingMessage });
+        notify.success(res?.data?.message, { id: loadingMessage });
         return res?.data
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        notify.error(error?.response?.data?.message, { id: loadingMessage });
         throw error;
     }
 })
 
 // .....Login.........
 export const login = createAsyncThunk("/auth/login", async (data) => {
-    const loadingMessage = toast.loading("Please wait! logging into your account...");
+    const loadingMessage = notify.loading("Please wait! logging into your account...");
     try {
         const res = await axiosInstance.post("/user/login", data);
-        toast.success(res?.data?.message, { id: loadingMessage });
+        notify.success(res?.data?.message, { id: loadingMessage });
         return res?.data
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        notify.error(error?.response?.data?.message, { id: loadingMessage });
         throw error;
     }
 })
 
 // .....Logout.........
 export const logout = createAsyncThunk("/auth/logout", async () => {
-    const loadingMessage = toast.loading("logout...");
+    const loadingMessage = notify.loading("logout...");
     try {
         const res = await axiosInstance.get("/user/logout");
-        toast.success(res?.data?.message, { id: loadingMessage });
+        notify.success(res?.data?.message, { id: loadingMessage });
         return res?.data
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        notify.error(error?.response?.data?.message, { id: loadingMessage });
         throw error;
     }
 })
 
-// .....get user data.........
+// .....get user data (silent fetch).........
 export const getUserData = createAsyncThunk("/auth/user/me", async () => {
-    const loadingMessage = toast.loading("fetching profile...");
     try {
         const res = await axiosInstance.get("/user/me");
-        toast.success(res?.data?.message, { id: loadingMessage });
         return res?.data
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        notify.error(error?.response?.data?.message ?? "Couldn't load profile");
         throw error;
     }
 })
 
 // .....update user data.........
 export const updateUserData = createAsyncThunk("/auth/user/me", async (data) => {
-    const loadingMessage = toast.loading("Updating changes...");
+    const loadingMessage = notify.loading("Updating changes...");
     try {
         const res = await axiosInstance.post(`/user/update/${data.id}`, data.formData);
-        toast.success(res?.data?.message, { id: loadingMessage });
+        notify.success(res?.data?.message, { id: loadingMessage });
         return res?.data
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        notify.error(error?.response?.data?.message, { id: loadingMessage });
         throw error;
     }
 })
@@ -77,13 +75,13 @@ export const updateUserData = createAsyncThunk("/auth/user/me", async (data) => 
 export const changePassword = createAsyncThunk(
     "/auth/user/changePassword",
     async (userPassword) => {
-        const loadingMessage = toast.loading("Changing password...");
+        const loadingMessage = notify.loading("Changing password...");
         try {
             const res = await axiosInstance.post("/user/change-password", userPassword);
-            toast.success(res?.data?.message, { id: loadingMessage });
+            notify.success(res?.data?.message, { id: loadingMessage });
             return res?.data
         } catch (error) {
-            toast.error(error?.response?.data?.message, { id: loadingMessage });
+            notify.error(error?.response?.data?.message, { id: loadingMessage });
             throw error;
         }
     }
@@ -93,13 +91,13 @@ export const changePassword = createAsyncThunk(
 export const forgetPassword = createAsyncThunk(
     "auth/user/forgetPassword",
     async (email) => {
-        const loadingMessage = toast.loading("Please Wait! sending email...");
+        const loadingMessage = notify.loading("Please Wait! sending email...");
         try {
             const res = await axiosInstance.post("/user/reset", {email});
-            toast.success(res?.data?.message, { id: loadingMessage });
+            notify.success(res?.data?.message, { id: loadingMessage });
             return res?.data
         } catch (error) {
-            toast.error(error?.response?.data?.message, { id: loadingMessage });
+            notify.error(error?.response?.data?.message, { id: loadingMessage });
             throw error;
         }
     }
@@ -108,15 +106,15 @@ export const forgetPassword = createAsyncThunk(
 
 // .......reset the user password......
 export const resetPassword = createAsyncThunk("/user/reset", async (data) => {
-    const loadingMessage = toast.loading("Please Wait! reseting your password...");
+    const loadingMessage = notify.loading("Please Wait! reseting your password...");
     try {
         const res = await axiosInstance.post(`/user/reset/${data.resetToken}`,
             { password: data.password }
         );
-        toast.success(res?.data?.message, { id: loadingMessage });
+        notify.success(res?.data?.message, { id: loadingMessage });
         return res?.data
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        notify.error(error?.response?.data?.message, { id: loadingMessage });
         throw error;
     }
 });

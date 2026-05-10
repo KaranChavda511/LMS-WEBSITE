@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { HiArrowUpRight } from "react-icons/hi2";
 import aboutMainImage from "../assets/images/about.png";
 import CarouselSlide from "../Components/CarouselSlide";
 import { celebrities } from "../Constants/CelebrityData";
@@ -82,23 +84,53 @@ function AboutUs() {
                   <div className="text-[10px] uppercase tracking-[0.18em] text-ink-950/50 dark:text-cream/50 mt-1.5 font-jakarta font-medium">countries</div>
                 </div>
               </div>
+
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <Link
+                  to="/courses"
+                  className="group inline-flex items-center gap-2 bg-ink-950 dark:bg-yellow-400 text-cream dark:text-ink-950 px-5 py-3 rounded-full font-jakarta font-semibold text-sm transition hover:scale-[1.03]"
+                >
+                  Browse the library
+                  <HiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full ring-1 ring-ink-950/15 dark:ring-white/15 text-ink-950 dark:text-cream font-jakarta font-semibold text-sm hover:bg-ink-950/[0.04] dark:hover:bg-white/5 transition"
+                >
+                  Talk to the team
+                </Link>
+              </div>
             </div>
 
-            <div className="relative animate-fade-up delay-2 max-w-md lg:max-w-none mx-auto w-full">
-              <div className="relative aspect-square rounded-[2rem] overflow-hidden bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-400 ring-1 ring-ink-950/10 dark:ring-white/10 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.35)]">
+            <div className="animate-fade-up delay-2 max-w-md lg:max-w-none mx-auto w-full">
+              <div className="relative aspect-[5/4] rounded-[2rem] overflow-hidden bg-gradient-to-br from-yellow-300 via-amber-400 to-orange-400 ring-1 ring-ink-950/10 dark:ring-white/10 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.35)]">
                 <div className="absolute inset-0 bg-grid-light opacity-30" />
                 <img
                   src={aboutMainImage}
                   alt="about illustration"
                   className="absolute inset-0 w-full h-full object-contain p-6"
                 />
+                <div className="absolute top-4 right-4 px-4 py-2 rounded-full bg-ink-950/90 backdrop-blur text-cream font-jakarta text-sm font-semibold shadow-lg animate-float-a">
+                  est. 2024
+                </div>
+                <div className="absolute bottom-4 left-4 px-4 py-2 rounded-full bg-white/95 dark:bg-ink-900/90 backdrop-blur ring-1 ring-ink-950/10 dark:ring-white/10 shadow-lg font-jakarta text-sm font-semibold text-ink-950 dark:text-cream animate-float-b">
+                  from <span className="text-yellow-600 dark:text-yellow-500">42</span> countries
+                </div>
               </div>
-              <div className="absolute -top-3 -right-3 px-4 py-2 rounded-full bg-ink-950 dark:bg-cream text-cream dark:text-ink-950 font-jakarta text-sm font-semibold shadow-lg animate-float-a">
-                est. 2024
-              </div>
-              <div className="absolute -bottom-3 left-6 px-4 py-2 rounded-full bg-white dark:bg-ink-900 ring-1 ring-ink-950/10 dark:ring-white/10 shadow-lg font-jakarta text-sm font-semibold animate-float-b">
-                from <span className="text-yellow-500">42</span> countries
-              </div>
+
+              <figure className="mt-8 p-5 rounded-2xl bg-white dark:bg-white/[0.04] ring-1 ring-ink-950/8 dark:ring-white/10 flex items-center gap-4">
+                <span className="h-10 w-10 shrink-0 rounded-full bg-gradient-to-br from-yellow-300 to-amber-500 flex items-center justify-center font-fraunces text-ink-950 font-semibold text-base ring-1 ring-ink-950/10">
+                  L
+                </span>
+                <div className="min-w-0">
+                  <p className="font-fraunces italic text-[15px] text-ink-950/80 dark:text-cream/80 leading-snug">
+                    &ldquo;Less hand-holding, more building.&rdquo;
+                  </p>
+                  <p className="mt-1 font-jakarta text-[12px] text-ink-950/55 dark:text-cream/55">
+                    <span className="text-ink-950 dark:text-cream font-semibold">Lina W.</span> · ML engineer
+                  </p>
+                </div>
+              </figure>
             </div>
           </div>
 

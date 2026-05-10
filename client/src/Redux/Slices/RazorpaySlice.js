@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import toast from 'react-hot-toast';
+import { notify } from "../../Helpers/notify";
 import { axiosInstance } from '../../Helpers/axiosInstance';
 
 const initialState = {
@@ -17,7 +17,7 @@ export const getRazorPayId = createAsyncThunk("/payments/keyId", async () => {
         const response = await axiosInstance.get("/payments/razorpay-key");
         return response?.data;
     } catch (error) {
-        toast.error("Failed to load data");
+        notify.error("Failed to load data");
         throw error
     }
 })
@@ -28,46 +28,44 @@ export const purchaseCourseBundle = createAsyncThunk("/payments/subscribe", asyn
         const response = await axiosInstance.post("/payments/subscribe");
         return response?.data;
     } catch (error) {
-        toast.error(error?.response?.data?.message);
+        notify.error(error?.response?.data?.message);
         throw error
     }
 })
 
 // ....verify payment.....
 export const verifyUserPayment = createAsyncThunk("/payments/verify", async (data) => {
-    const loadingId = toast.loading("Subscribing bundle...");
+    const loadingId = notify.loading("Subscribing bundle...");
     try {
         const response = await axiosInstance.post("/payments/verify", data);
-        toast.success("Payment verified", { id: loadingId });
+        notify.success("Payment verified", { id: loadingId });
         return response?.data;
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingId });
+        notify.error(error?.response?.data?.message, { id: loadingId });
         throw error
     }
 })
 
-// .....get payment record......
+// .....get payment record (silent fetch)......
 export const getPaymentRecord = createAsyncThunk("/payments/record", async () => {
-    const loadingId = toast.loading("Getting the payment records");
     try {
         const response = await axiosInstance.get("/payments?count=100");
-        toast.success(response?.data?.message, {id: loadingId});
         return response?.data;
     } catch (error) {
-        toast.error("Operation failed", {id: loadingId});
+        notify.error("Couldn't load payment records");
         throw error;
     }
 });
 
 // .....cancel subscription......
 export const cancelCourseBundle = createAsyncThunk("/payments/cancel", async () => {
-    const loadingId = toast.loading("unsubscribing the bundle...")
+    const loadingId = notify.loading("unsubscribing the bundle...")
     try {
         const response = await axiosInstance.post("/payments/unsubscribe");
-        toast.success(response?.data?.message, {id: loadingId});
+        notify.success(response?.data?.message, {id: loadingId});
         return response?.data;
     } catch (error) {
-        toast.error(error?.response?.data?.message, {id: loadingId});
+        notify.error(error?.response?.data?.message, {id: loadingId});
         throw error;
     }
 })

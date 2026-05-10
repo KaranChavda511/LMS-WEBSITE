@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { notify } from "../../Helpers/notify";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "../../Layout/Layout";
@@ -16,7 +16,7 @@ export default function ForgotPassword() {
   async function onForgotPassword(event) {
     event.preventDefault();
     if (!email) {
-      toast.error("email is required to reset password!");
+      notify.error("email is required to reset password!");
       return;
     }
 

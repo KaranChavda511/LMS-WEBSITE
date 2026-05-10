@@ -137,10 +137,10 @@ export default function HomePage() {
             </span>
           </div>
 
-          <div className="mt-10 grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          <div className="mt-10 grid lg:grid-cols-12 gap-12 lg:gap-10 items-start">
             {/* Copy column */}
-            <div className="lg:col-span-7 space-y-8">
-              <h1 className="font-fraunces font-light tracking-[-0.02em] text-[clamp(2.5rem,7vw,5.75rem)] leading-[0.95] animate-fade-up delay-1">
+            <div className="lg:col-span-7 space-y-7 lg:pt-2">
+              <h1 className="font-fraunces font-light tracking-[-0.02em] text-[clamp(2.5rem,6.5vw,5.25rem)] leading-[0.95] animate-fade-up delay-1">
                 Learn what
                 <br />
                 <span className="italic font-normal text-yellow-500">actually</span> matters,
@@ -172,17 +172,6 @@ export default function HomePage() {
               <p className="text-sm text-ink-950/50 dark:text-cream/50 font-jakarta animate-fade-up delay-3">
                 No credit card required &nbsp;·&nbsp; 7-day refund window
               </p>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-8 pt-10 mt-12 border-t border-ink-950/10 dark:border-white/10 animate-fade-up delay-4">
-                {stats.map(([num, label]) => (
-                  <div key={label}>
-                    <div className="font-fraunces text-3xl md:text-4xl font-medium tracking-tight">{num}</div>
-                    <div className="text-[11px] uppercase tracking-[0.18em] text-ink-950/50 dark:text-cream/50 mt-1.5 font-jakarta font-medium">
-                      {label}
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Visual column */}
@@ -195,20 +184,32 @@ export default function HomePage() {
                   className="absolute inset-0 w-full h-full object-contain p-6"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-orange-500/20 to-transparent" />
-              </div>
 
-              <div className="absolute -top-4 -left-4 px-4 py-2 rounded-full bg-white dark:bg-ink-900 ring-1 ring-ink-950/10 dark:ring-white/10 shadow-lg font-jakarta text-sm font-semibold animate-float-a">
-                <BsStars className="inline mr-1.5 -mt-0.5 text-yellow-500" />
-                Project-based
-              </div>
-              <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-full bg-ink-950 dark:bg-cream text-cream dark:text-ink-950 font-jakarta text-sm font-semibold shadow-lg animate-float-b">
-                Lifetime access
-              </div>
-              <div className="hidden md:block absolute top-[38%] -right-6 px-4 py-2.5 rounded-2xl bg-white dark:bg-ink-900 ring-1 ring-ink-950/10 dark:ring-white/10 shadow-lg font-jakarta animate-float-c">
-                <div className="text-emerald-500 font-bold text-sm leading-tight">+312%</div>
-                <div className="text-[11px] text-ink-950/55 dark:text-cream/55">avg salary lift</div>
+                <div className="absolute top-4 left-4 px-4 py-2 rounded-full bg-white/95 dark:bg-ink-900/90 backdrop-blur ring-1 ring-ink-950/10 dark:ring-white/10 shadow-lg font-jakarta text-sm font-semibold text-ink-950 dark:text-cream animate-float-a">
+                  <BsStars className="inline mr-1.5 -mt-0.5 text-yellow-500" />
+                  Project-based
+                </div>
+                <div className="absolute bottom-4 right-4 px-4 py-2 rounded-full bg-ink-950/90 backdrop-blur text-cream font-jakarta text-sm font-semibold shadow-lg animate-float-b">
+                  Lifetime access
+                </div>
+                <div className="hidden md:block absolute top-[42%] right-4 px-4 py-2.5 rounded-2xl bg-white/95 dark:bg-ink-900/90 backdrop-blur ring-1 ring-ink-950/10 dark:ring-white/10 shadow-lg font-jakarta animate-float-c">
+                  <div className="text-emerald-600 dark:text-emerald-400 font-bold text-sm leading-tight">+312%</div>
+                  <div className="text-[11px] text-ink-950/55 dark:text-cream/55">avg salary lift</div>
+                </div>
               </div>
             </div>
+          </div>
+
+          {/* Full-width stats strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-8 pt-10 mt-14 lg:mt-20 border-t border-ink-950/10 dark:border-white/10 animate-fade-up delay-4">
+            {stats.map(([num, label]) => (
+              <div key={label}>
+                <div className="font-fraunces text-3xl md:text-4xl font-medium tracking-tight">{num}</div>
+                <div className="text-[11px] uppercase tracking-[0.18em] text-ink-950/50 dark:text-cream/50 mt-1.5 font-jakarta font-medium">
+                  {label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

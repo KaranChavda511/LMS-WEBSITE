@@ -12,6 +12,24 @@
   font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
 }
 
+/* Sonner overrides — neutralize default loader so our custom icon
+   sits in the same flex slot as success/error/warning/info icons */
+[data-sonner-toast] [data-icon] {
+  display: inline-flex;
+  align-items: flex-start;
+}
+[data-sonner-toast] .sonner-loader {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  transform: none !important;
+  display: inline-flex;
+  align-items: flex-start;
+}
+[data-sonner-toast] .sonner-loader[data-visible="false"] {
+  display: none;
+}
+
 /* Atmospheric backgrounds */
 .bg-grid-light {
   background-image: radial-gradient(rgba(20, 20, 25, 0.07) 1px, transparent 1px);

@@ -1,47 +1,45 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { axiosInstance } from '../../Helpers/axiosInstance';
-import toast from 'react-hot-toast';
+import { notify } from "../../Helpers/notify";
 
 const initialState = {
     lectures: [],
 }
 
-// .....get lectures for a specific course....
+// .....get lectures for a specific course (silent fetch)....
 export const getCourseLectures = createAsyncThunk("/courses/lecture/get", async (id) => {
-    const loadingId = toast.loading("Fetching Lectures...");
     try {
         const res = await axiosInstance.get(`/courses/${id}`);
-        toast.success("Lectures Fetching Successfully", { id: loadingId })
         return res?.data;
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingId })
+        notify.error(error?.response?.data?.message ?? "Couldn't load lectures");
         throw error
     }
 })
 
 // .....add course lecture for a specific course....
 export const addCourseLecture = createAsyncThunk("/courses/lecture/add", async (data) => {
-    const loadingId = toast.loading("Adding Lecture...");
+    const loadingId = notify.loading("Adding Lecture...");
     try {
         const res = await axiosInstance.post(`/courses/${data.id}`, data.formData);
-        toast.success("Lecture Added Successfully", { id: loadingId })
+        notify.success("Lecture Added Successfully", { id: loadingId })
         return res?.data;
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingId })
+        notify.error(error?.response?.data?.message, { id: loadingId })
         throw error
     }
 })
 
 // .....delete course lecture for a specific course....
 export const deleteCourseLecture = createAsyncThunk("/courses/lecture/delete", async (data) => {
-    const loadingId = toast.loading("Deleting Lecture...");
+    const loadingId = notify.loading("Deleting Lecture...");
     console.log(data);
     try {
         const res = await axiosInstance.delete(`/courses?courseId=${data.courseId}&lectureId=${data.lectureId}`);
-        toast.success("Lecture Deleted Successfully", { id: loadingId })
+        notify.success("Lecture Deleted Successfully", { id: loadingId })
         return res?.data;
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingId })
+        notify.error(error?.response?.data?.message, { id: loadingId })
         throw error
     }
 })

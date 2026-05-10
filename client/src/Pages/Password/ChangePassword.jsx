@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { notify } from "../../Helpers/notify";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "../../Layout/Layout";
@@ -27,7 +27,7 @@ export default function ChangePassword() {
   async function onChangePassword(event) {
     event.preventDefault();
     if (!userPassword.oldPassword || !userPassword.newPassword) {
-      toast.error("Please fill all the details");
+      notify.error("Please fill all the details");
       return;
     }
 

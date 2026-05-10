@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { notify } from "../Helpers/notify";
 import { BsPersonCircle } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -49,15 +49,15 @@ export default function Signup() {
   async function createNewAccount(event) {
     event.preventDefault();
     if (!signupData.email || !signupData.password || !signupData.fullName) {
-      toast.error("Please fill all the details");
+      notify.error("Please fill all the details");
       return;
     }
     if (signupData.fullName.length < 3) {
-      toast.error("Name should be at least 3 characters");
+      notify.error("Name should be at least 3 characters");
       return;
     }
     if (!signupData.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
-      toast.error("Invalid email id");
+      notify.error("Invalid email id");
       return;
     }
 

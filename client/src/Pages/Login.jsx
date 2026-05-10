@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { notify } from "../Helpers/notify";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { HiArrowUpRight } from "react-icons/hi2";
@@ -28,7 +28,7 @@ export default function Login() {
   async function onLogin(event) {
     event.preventDefault();
     if (!loginData.email || !loginData.password) {
-      toast.error("Please fill all the details");
+      notify.error("Please fill all the details");
       return;
     }
     setIsLoading(true);
@@ -75,20 +75,18 @@ export default function Login() {
               ))}
             </div>
 
-            <figure className="mt-10 max-w-md p-6 rounded-2xl bg-white dark:bg-white/[0.04] ring-1 ring-ink-950/8 dark:ring-white/10">
-              <blockquote className="font-fraunces italic text-lg text-ink-950/80 dark:text-cream/80 leading-relaxed">
-                &ldquo;The first course I actually finished. I was building
-                production code in week two.&rdquo;
-              </blockquote>
-              <figcaption className="mt-4 flex items-center gap-3">
-                <span className="h-9 w-9 rounded-full bg-gradient-to-br from-yellow-300 to-amber-500 flex items-center justify-center font-fraunces text-ink-950 font-semibold text-sm">
-                  M
-                </span>
-                <span className="font-jakarta text-sm">
-                  <span className="text-ink-950 dark:text-cream font-semibold">Maya R.</span>
-                  <span className="text-ink-950/55 dark:text-cream/55"> · backend engineer</span>
-                </span>
-              </figcaption>
+            <figure className="mt-10 max-w-md p-5 rounded-2xl bg-white dark:bg-white/[0.04] ring-1 ring-ink-950/8 dark:ring-white/10 flex items-center gap-4">
+              <span className="h-10 w-10 shrink-0 rounded-full bg-gradient-to-br from-yellow-300 to-amber-500 flex items-center justify-center font-fraunces text-ink-950 font-semibold text-base ring-1 ring-ink-950/10">
+                M
+              </span>
+              <div className="min-w-0">
+                <p className="font-fraunces italic text-[15px] text-ink-950/80 dark:text-cream/80 leading-snug line-clamp-2">
+                  &ldquo;The first course I actually finished.&rdquo;
+                </p>
+                <p className="mt-1 font-jakarta text-[12px] text-ink-950/55 dark:text-cream/55">
+                  <span className="text-ink-950 dark:text-cream font-semibold">Maya R.</span> · backend engineer
+                </p>
+              </div>
             </figure>
           </div>
 
@@ -170,6 +168,13 @@ export default function Login() {
                 >
                   Create an account
                 </Link>
+              </p>
+
+              <p className="mt-5 text-center font-jakarta text-[11px] text-ink-950/45 dark:text-cream/45 leading-relaxed">
+                By signing in, you agree to our{" "}
+                <Link to="/" className="underline decoration-ink-950/20 dark:decoration-cream/30 underline-offset-2 hover:text-ink-950/65 dark:hover:text-cream/65">terms</Link>{" "}
+                and{" "}
+                <Link to="/" className="underline decoration-ink-950/20 dark:decoration-cream/30 underline-offset-2 hover:text-ink-950/65 dark:hover:text-cream/65">privacy policy</Link>.
               </p>
             </form>
           </div>

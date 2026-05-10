@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { toast } from "react-hot-toast";
+import { notify } from "../Helpers/notify";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { axiosInstance } from "../Helpers/axiosInstance";
 import { isEmail } from "../Helpers/regexMatcher";
@@ -25,21 +25,21 @@ export default function Contact() {
   async function onFormSubmit(e) {
     e.preventDefault();
     if (!userInput.email || !userInput.name || !userInput.message) {
-      toast.error("All fields are mandatory");
+      notify.error("All fields are mandatory");
       return;
     }
     if (!isEmail(userInput.email)) {
-      toast.error("Invalid email");
+      notify.error("Invalid email");
       return;
     }
     setIsLoading(true);
-    const loadingMessage = toast.loading("Sending message…");
+    const loadingMessage = notify.loading("Sending message…");
     try {
       const res = await axiosInstance.post("/contact", userInput);
-      toast.success(res?.data?.message, { id: loadingMessage });
+      notify.success(res?.data?.message, { id: loadingMessage });
       setUserInput({ name: "", email: "", message: "" });
     } catch (err) {
-      toast.error("Message sending failed. Try again.", { id: loadingMessage });
+      notify.error("Message sending failed. Try again.", { id: loadingMessage });
     } finally {
       setIsLoading(false);
     }
@@ -127,16 +127,32 @@ export default function Contact() {
                 />
               </div>
 
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="group mt-6 inline-flex items-center justify-center gap-2 bg-ink-950 dark:bg-yellow-400 text-cream dark:text-ink-950 px-6 py-3.5 rounded-full font-jakarta font-semibold transition hover:scale-[1.02] disabled:opacity-60 disabled:hover:scale-100"
-              >
-                {isLoading ? "Sending…" : "Send message"}
-                {!isLoading && (
-                  <HiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                )}
-              </button>
+              <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="group inline-flex items-center justify-center gap-2 bg-ink-950 dark:bg-yellow-400 text-cream dark:text-ink-950 px-6 py-3.5 rounded-full font-jakarta font-semibold transition hover:scale-[1.02] disabled:opacity-60 disabled:hover:scale-100"
+                >
+                  {isLoading ? "Sending…" : "Send message"}
+                  {!isLoading && (
+                    <HiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  )}
+                </button>
+                <p className="font-jakarta text-xs text-ink-950/55 dark:text-cream/55">
+                  Or email{" "}
+                  <a
+                    href="mailto:hello@lumen.school"
+                    className="font-semibold text-ink-950 dark:text-cream underline decoration-yellow-500 decoration-2 underline-offset-4"
+                  >
+                    hello@lumen.school
+                  </a>
+                </p>
+              </div>
+
+              <p className="mt-6 pt-6 border-t border-ink-950/8 dark:border-white/10 font-jakarta text-[11px] text-ink-950/45 dark:text-cream/45 leading-relaxed">
+                We read every message and aim to reply within one business day.
+                For urgent matters, mention &ldquo;urgent&rdquo; in the subject.
+              </p>
             </form>
           </div>
         </div>

@@ -1,46 +1,44 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import toast from 'react-hot-toast';
+import { notify } from "../../Helpers/notify";
 import { axiosInstance } from '../../Helpers/axiosInstance';
 
 const initialState = {
     coursesData: []
 }
 
-// ....get all courses....
+// ....get all courses (silent fetch — only error)....
 export const getAllCourses = createAsyncThunk("/courses/get", async () => {
-    const loadingMessage = toast.loading("fetching courses...");
     try {
         const res = await axiosInstance.get("/courses");
-        toast.success(res?.data?.message, { id: loadingMessage });
         return res?.data
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        notify.error(error?.response?.data?.message ?? "Couldn't load courses");
         throw error;
     }
 })
 
 // ....create course....
 export const createNewCourse = createAsyncThunk("/courses/create", async (data) => {
-    const loadingMessage = toast.loading("Creating course...");
+    const loadingMessage = notify.loading("Creating course...");
     try {
         const res = await axiosInstance.post("/courses", data);
-        toast.success(res?.data?.message, { id: loadingMessage });
+        notify.success(res?.data?.message, { id: loadingMessage });
         return res?.data
     } catch (error) {
-        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        notify.error(error?.response?.data?.message, { id: loadingMessage });
         throw error;
     }
 })
 
 // ....delete course......
 export const deleteCourse = createAsyncThunk("/course/delete", async (id) => {
-    const loadingId = toast.loading("deleting course ...")
+    const loadingId = notify.loading("deleting course ...")
     try {
         const response = await axiosInstance.delete(`/courses/${id}`);
-        toast.success("Courses deleted successfully", { id: loadingId });
+        notify.success("Courses deleted successfully", { id: loadingId });
         return response?.data
     } catch (error) {
-        toast.error("Failed to delete course", { id: loadingId });
+        notify.error("Failed to delete course", { id: loadingId });
         throw error
     }
 });

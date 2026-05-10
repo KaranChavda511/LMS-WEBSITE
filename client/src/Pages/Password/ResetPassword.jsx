@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { notify } from "../../Helpers/notify";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Layout from "../../Layout/Layout";
@@ -18,7 +18,7 @@ export default function ResetPassword() {
   async function onChangePassword(event) {
     event.preventDefault();
     if (!password) {
-      toast.error("password is required");
+      notify.error("password is required");
       return;
     }
 

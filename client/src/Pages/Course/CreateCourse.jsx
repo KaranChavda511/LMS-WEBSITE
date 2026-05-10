@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { createNewCourse } from "../../Redux/Slices/CourseSlice";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../Layout/Layout";
-import toast from "react-hot-toast";
+import { notify } from "../../Helpers/notify";
 import InputBox from "../../Components/InputBox/InputBox";
 import TextArea from "../../Components/InputBox/TextArea";
 
@@ -55,7 +55,7 @@ export default function CreateCourse() {
       !userInput.createdBy ||
       !userInput.thumbnail
     ) {
-      toast.error("All field are required!");
+      notify.error("All field are required!");
       return;
     }
 

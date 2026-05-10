@@ -8,7 +8,7 @@ import {
   purchaseCourseBundle,
   verifyUserPayment,
 } from "../../Redux/Slices/RazorpaySlice";
-import toast from "react-hot-toast";
+import { notify } from "../../Helpers/notify";
 import { getUserData } from "../../Redux/Slices/AuthSlice";
 
 export default function Checkout() {
@@ -31,7 +31,7 @@ export default function Checkout() {
   async function handleSubscription(e) {
     e.preventDefault();
     if (!rzorpayKey || !subscription_id) {
-      toast.error("something went wrong");
+      notify.error("something went wrong");
       return;
     }
 
@@ -53,7 +53,7 @@ export default function Checkout() {
         paymentDetails.razorpay_subscription_id =
           response.razorpay_subscription_id;
 
-        toast.success("Payment successful");
+        notify.success("Payment successful");
 
         const res = await dispatch(verifyUserPayment(paymentDetails));
         if (res?.payload?.success) {
