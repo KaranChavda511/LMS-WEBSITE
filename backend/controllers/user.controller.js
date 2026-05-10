@@ -7,11 +7,12 @@ import cloudinary from 'cloudinary';
 import AppError from "../utils/error.utils.js";
 import sendEmail from "../utils/sendEmail.js";
 
+const isProd = process.env.NODE_ENV === 'production';
 const cookieOptions = {
     httpOnly: true,
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    secure: true, 
-    sameSite: 'none'
+    secure: isProd,
+    sameSite: isProd ? 'none' : 'lax',
 }
 
 

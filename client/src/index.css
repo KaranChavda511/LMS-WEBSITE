@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lato:wght@300;400&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500;6..12,600&family=Open+Sans:wght@300;400&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Plus+Jakarta+Sans:wght@300..800&family=Inter:wght@300;400;500;600&family=Lato:wght@300;400&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500;6..12,600&family=Open+Sans:wght@300;400&family=Roboto:wght@300&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,11 +9,55 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
 }
 
-body {
+/* Atmospheric backgrounds */
+.bg-grid-light {
+  background-image: radial-gradient(rgba(20, 20, 25, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.dark .bg-grid-light {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 38s linear infinite;
+  width: max-content;
+}
+.animate-marquee:hover { animation-play-state: paused; }
+
+/* Float */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float-a { animation: float-y 6s ease-in-out infinite; }
+.animate-float-b { animation: float-y 7s ease-in-out infinite 1s; }
+.animate-float-c { animation: float-y 8s ease-in-out infinite 0.5s; }
+
+/* Fade up reveal */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.18s; }
+.delay-3 { animation-delay: 0.30s; }
+.delay-4 { animation-delay: 0.42s; }
+
+html, body {
   min-height: 100vh;
+  background-color: #faf6ed !important;
+}
+html.dark, html.dark body {
+  background-color: #0a0a0e !important;
 }
 
 input:disabled,
@@ -31,75 +75,50 @@ button:hover {
 }
 
 ::-webkit-scrollbar {
-  background: #9797e70c;
-  width: 5px;
+  background: transparent;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #bae716c4;
-  transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+  background: rgba(20, 20, 25, 0.18);
+  border-radius: 999px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #bae716;
+  background: rgba(20, 20, 25, 0.32);
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(250, 246, 237, 0.12);
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(250, 246, 237, 0.22);
 }
 
-html.light ::-webkit-scrollbar-thumb {
-  background: #0000ff85;
-}
-
-html.light ::-webkit-scrollbar-thumb:hover {
-  background: #0000ff;
-}
-
-/* custom slider button */
+/* slick carousel — minimal editorial */
 .slick-slider .slick-arrow {
-  height: 50px;
-  width: 50px;
-  background-color: #3f355c;
-  z-index: 5;
-  border-radius: 100px;
-}
-
-.slick-slider .slick-arrow:hover {
-  background-color: #1414df;
-}
-
-.slick-slider .slick-arrow::before {
-  color: #ffffff;
-  font-size: 52px;
-  font-weight: 700;
-  box-shadow: 0px 3px 5px #0000003d;
-  border-radius: 100px;
-}
-
-.slick-slider .slick-next {
-  right: -12px;
-}
-
-.slick-slider .slick-prev {
-  left: -12px;
+  display: none !important;
 }
 
 .slick-dots {
-  bottom: 7px;
+  bottom: -28px;
+  display: flex !important;
+  justify-content: center;
+  gap: 8px;
 }
 
 .slick-dots li {
-  background-color: rgba(255, 255, 255, 0.356);
-  border-radius: 50%;
-  height: 15px;
-  width: 15px;
-  transition: all cubic-bezier(0.075, 0.82, 0.165, 1);
+  width: 22px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(250, 246, 237, 0.25);
+  transition: background 250ms ease, width 250ms ease;
+  margin: 0;
 }
 
-.slick-dots button::before {
-  content: "";
-  display: none;
-}
+.slick-dots li button { display: none; }
+.slick-dots button::before { content: ""; display: none; }
 
 .slick-dots .slick-active {
-  background: #ffffff;
-  height: 22px;
-  width: 22px;
+  width: 36px;
+  background: #facc15;
 }

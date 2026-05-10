@@ -3,30 +3,34 @@ import { BsQuote } from "react-icons/bs";
 
 export default function CarouselSlide({ details }) {
   return (
-    <div className="md:w-auto w-full flex md:flex-row flex-col gap-7 mx-auto md:h-[350px] h-[550px] overflow-hidden">
-      <img
-        src={details.image}
-        alt={`${details.title}Image`}
-        className="md:h-[75%] h-[210px] md:self-end self-center rounded-full rounded-ss-sm rounded-e-0 dark:bg-[#ef9eff] bg-[#3392ff] pl-0 pb-0 p-8"
-      />
-      <div className="flex flex-col md:gap-10 gap-6">
-        <h2 className="md:text-5xl font-inter text-3xl w-fit text-purple-800 dark:text-violet-400 font-semibold md:self-auto self-center relative after:content-[' '] after:w-[60%] after:h-1 rounded-full after:bg-purple-500 dark:after:bg-white after:absolute after:-bottom-3 after:left-0">
+    <div className="md:w-auto w-full flex md:flex-row flex-col gap-8 md:gap-12 mx-auto md:h-[330px] h-[540px] overflow-hidden items-center">
+      <div className="relative shrink-0">
+        <div className="absolute inset-0 rounded-full bg-yellow-400/30 blur-2xl" />
+        <img
+          src={details.image}
+          alt={details.title}
+          className="relative md:h-[260px] h-[200px] w-[200px] md:w-[200px] object-cover rounded-full ring-1 ring-white/20 bg-gradient-to-br from-yellow-300/80 to-amber-500/80 p-1.5"
+        />
+      </div>
+
+      <div className="flex flex-col gap-5 md:gap-7 md:items-start items-center md:text-left text-center">
+        <span className="text-[11px] uppercase tracking-[0.25em] font-jakarta font-semibold text-yellow-400">
+          Voice 0{(details.title?.length % 5) + 1}
+        </span>
+
+        <h2 className="font-fraunces font-light md:text-5xl text-3xl tracking-tight text-cream leading-[1.05]">
           {details.title}
         </h2>
 
-        <p className="flex flex-col gap-0">
+        <div className="relative max-w-2xl">
           <BsQuote
-            size={60}
-            className=" text-blue-500 dark:text-red-400 font-semibold"
+            size={38}
+            className="text-yellow-400/80 absolute -top-2 -left-1 -translate-x-2"
           />
-          <span className="text-gray-900 md:text-2xl text-lg dark:text-white font-lato font-[500] px-10">
+          <p className="font-fraunces italic md:text-2xl text-lg font-light text-cream/80 leading-relaxed pl-8">
             {details.description}
-          </span>
-          <BsQuote
-            size={50}
-            className=" text-blue-500 dark:text-red font-semibold self-end rotate-180"
-          />
-        </p>
+          </p>
+        </div>
       </div>
     </div>
   );
