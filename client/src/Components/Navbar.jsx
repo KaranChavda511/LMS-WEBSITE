@@ -5,6 +5,7 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { logout } from "../Redux/Slices/AuthSlice";
+import BrandLogo from "./BrandLogo";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -54,16 +55,8 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-[68px] md:h-[76px] flex items-center justify-between gap-6">
         {/* Brand */}
-        <Link to="/" className="flex items-center gap-2.5 group shrink-0">
-          <span className="relative flex items-center justify-center h-9 w-9 rounded-xl bg-ink-950 dark:bg-yellow-400 text-yellow-400 dark:text-ink-950 font-fraunces text-xl leading-none transition-transform group-hover:rotate-[-6deg]">
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden>
-              <path d="M12 2 14.39 8.26 21 9 16.18 13.49 17.55 20 12 16.77 6.45 20l1.37-6.51L3 9l6.61-.74Z" />
-            </svg>
-          </span>
-          <span className="font-fraunces text-2xl tracking-tight text-ink-950 dark:text-cream leading-none">
-            lumen<span className="text-yellow-500">.</span>
-          </span>
-        </Link>
+        <BrandLogo to="/" />
+
 
         {/* Desktop nav */}
         <ul className="hidden md:flex items-center gap-1 font-jakarta text-sm font-medium">

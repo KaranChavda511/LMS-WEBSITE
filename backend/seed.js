@@ -7,7 +7,7 @@ import Course from './models/course.model.js';
 
 const MONGO_URI = process.env.MONGO_URI;
 
-const SEED_EMAIL_DOMAIN = '@lumen.school';
+const SEED_EMAIL_DOMAIN = '@learnindia.school';
 
 const usersToSeed = [
   {
@@ -237,8 +237,8 @@ async function run() {
   console.log(`  users:   ${userCount}`);
   console.log(`  courses: ${courseCount}`);
   console.log('\nlogin credentials');
-  console.log('  admin  → admin@lumen.school / admin123');
-  console.log('  user   → maya@lumen.school / learner123');
+  console.log('  admin  → admin@learnindia.school / admin123');
+  console.log('  user   → maya@learnindia.school / learner123');
 
   await mongoose.disconnect();
   process.exit(0);

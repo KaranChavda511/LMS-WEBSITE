@@ -105,7 +105,9 @@ export default function Login() {
                 Welcome <em className="italic text-yellow-500">back.</em>
               </h2>
               <h2 className="hidden lg:block font-fraunces font-light text-3xl leading-tight">
-                Sign in to lumen<span className="text-yellow-500">.</span>
+                Sign in to <span className="not-italic">Learn</span>
+                <em className="text-yellow-500">·</em>
+                <em className="italic">India</em>
               </h2>
               <p className="font-jakarta text-sm text-ink-950/60 dark:text-cream/60 mt-2">
                 Enter your details to continue.
@@ -161,7 +163,7 @@ export default function Login() {
               </div>
 
               <p className="text-center font-jakarta text-sm text-ink-950/65 dark:text-cream/65">
-                New to lumen?{" "}
+                New to LearnIndia?{" "}
                 <Link
                   to="/signup"
                   className="font-semibold text-ink-950 dark:text-cream underline decoration-yellow-500 underline-offset-4 decoration-2 hover:text-yellow-500 dark:hover:text-yellow-400"

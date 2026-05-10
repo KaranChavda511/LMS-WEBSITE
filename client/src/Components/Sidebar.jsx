@@ -11,6 +11,7 @@ import {
   FaInfoCircle,
   FaPhone,
 } from "react-icons/fa";
+import BrandLogo from "./BrandLogo";
 
 const closeDrawer = () => {
   const cb = document.getElementById("my-drawer");
@@ -50,16 +51,9 @@ export default function Sidebar({ hideBar = false }) {
 
           {/* Header */}
           <div className="relative px-6 pt-6 pb-5 border-b border-ink-950/10 dark:border-white/10 flex items-center justify-between">
-            <Link to="/" onClick={closeDrawer} className="flex items-center gap-2">
-              <span className="h-9 w-9 rounded-xl bg-ink-950 dark:bg-yellow-400 text-yellow-400 dark:text-ink-950 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden>
-                  <path d="M12 2 14.39 8.26 21 9 16.18 13.49 17.55 20 12 16.77 6.45 20l1.37-6.51L3 9l6.61-.74Z" />
-                </svg>
-              </span>
-              <span className="font-fraunces text-2xl text-ink-950 dark:text-cream leading-none">
-                lumen<span className="text-yellow-500">.</span>
-              </span>
-            </Link>
+            <span onClick={closeDrawer}>
+              <BrandLogo to="/" />
+            </span>
             <button
               onClick={closeDrawer}
               className="h-9 w-9 rounded-full ring-1 ring-ink-950/10 dark:ring-white/10 flex items-center justify-center text-ink-950 dark:text-cream hover:bg-ink-950/[0.04] dark:hover:bg-white/5"

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
 import { HiArrowUpRight } from "react-icons/hi2";
+import BrandLogo from "./BrandLogo";
 
 const cols = [
   {
@@ -68,19 +69,10 @@ export default function Footer() {
         {/* Link grid */}
         <div className="grid md:grid-cols-12 gap-10 md:gap-8 py-14">
           <div className="md:col-span-4">
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <span className="h-10 w-10 rounded-xl bg-yellow-400 text-ink-950 flex items-center justify-center transition-transform group-hover:rotate-[-8deg]">
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden>
-                  <path d="M12 2 14.39 8.26 21 9 16.18 13.49 17.55 20 12 16.77 6.45 20l1.37-6.51L3 9l6.61-.74Z" />
-                </svg>
-              </span>
-              <span className="font-fraunces text-3xl tracking-tight leading-none">
-                lumen<span className="text-yellow-400">.</span>
-              </span>
-            </Link>
+            <BrandLogo to="/" tone="footer" size="lg" />
             <p className="font-jakarta text-cream/60 text-sm leading-relaxed mt-5 max-w-xs">
-              A library of practitioner-led courses across engineering, design,
-              and business — without the gatekeeping.
+              India&rsquo;s home for practitioner-led courses across
+              engineering, design, and business — without the gatekeeping.
             </p>
             <div className="flex items-center gap-3 mt-7">
               {socials.map(({ Icon, href }, i) => (
@@ -141,7 +133,7 @@ export default function Footer() {
         {/* Bottom strip */}
         <div className="flex flex-col md:flex-row gap-3 md:items-center md:justify-between pt-8 border-t border-white/10">
           <span className="font-jakarta text-xs text-cream/55">
-            © {year} lumen. Crafted with care. All rights reserved.
+            © {year} LearnIndia. Crafted in India with care. All rights reserved.
           </span>
           <span className="font-jakarta text-xs text-cream/55 flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 inline-block" />

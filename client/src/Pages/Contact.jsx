@@ -8,9 +8,9 @@ import TextArea from "../Components/InputBox/TextArea";
 import Layout from "../Layout/Layout";
 
 const channels = [
-  { k: "Hello", v: "hello@lumen.school" },
-  { k: "Press", v: "press@lumen.school" },
-  { k: "Partnerships", v: "partners@lumen.school" },
+  { k: "Hello", v: "hello@learnindia.school" },
+  { k: "Press", v: "press@learnindia.school" },
+  { k: "Partnerships", v: "partners@learnindia.school" },
 ];
 
 export default function Contact() {
@@ -141,10 +141,10 @@ export default function Contact() {
                 <p className="font-jakarta text-xs text-ink-950/55 dark:text-cream/55">
                   Or email{" "}
                   <a
-                    href="mailto:hello@lumen.school"
+                    href="mailto:hello@learnindia.school"
                     className="font-semibold text-ink-950 dark:text-cream underline decoration-yellow-500 decoration-2 underline-offset-4"
                   >
-                    hello@lumen.school
+                    hello@learnindia.school
                   </a>
                 </p>
               </div>
